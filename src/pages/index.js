@@ -1,16 +1,16 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Image from 'gatsby-image';
+import styled from 'styled-components';
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allContentfulPost.edges;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -18,27 +18,25 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
         {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
+          const title = node.title || node.slug;
+
           return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </div>
+            <Post key={node.slug}>
+              <PostImage>
+                <Image fluid={node.image.fluid} />
+              </PostImage>
+              <PostText>
+                <h3>
+                  <Link style={{ boxShadow: `none` }} to={node.slug}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>{node.date}</small>
+                <p>{node.description}</p>
+              </PostText>
+
+            </Post>
           )
         })}
       </Layout>
@@ -46,7 +44,20 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex
+const Post = styled.div`
+  display: flex;
+`;
+
+const PostImage = styled.div`
+  flex: 25%;
+  margin-right: 1rem;
+`;
+
+const PostText = styled.div`
+  flex: 75%;
+`;
+
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -55,17 +66,17 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulPost {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
+          title
+          date
+          description
+          slug
+          image {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
           }
         }
       }

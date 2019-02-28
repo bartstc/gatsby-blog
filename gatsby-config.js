@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'production') dotenv.config();
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
@@ -69,10 +73,13 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-source-contentful`, // after adding plugin gatsby-source-contentful we have access to the contentful data via graphiQL
       options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
+        spaceId: `t5uhlt7prm98`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
     },
+    `@contentful/gatsby-transformer-contentful-richtext` // allows to convert contentful data (content) into html
   ],
 }
+
