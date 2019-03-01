@@ -4,13 +4,11 @@ if (process.env.NODE_ENV !== 'production') dotenv.config();
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
-    social: {
-      twitter: `kylemathews`,
-    },
+    title: `M`,
+    subtitle: `Travel, lifestyle, architecture and more.`,
+    author: `Bart`,
+    description: `Simple blog exmaple using Gatsby & Contentful`,
+    siteUrl: ``,
   },
   plugins: [
     {

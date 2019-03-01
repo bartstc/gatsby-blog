@@ -1,6 +1,6 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import React from "react";
+import { StaticQuery, graphql } from "gatsby";
+// import Image from "gatsby-image";
 
 function Bio() {
   return (
@@ -20,10 +20,6 @@ function Bio() {
             <p>
               Written by <strong>{author}</strong> who lives and works in San
               Francisco building useful things.
-              {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
-              </a>
             </p>
           </div>
         )
@@ -44,12 +40,9 @@ const bioQuery = graphql`
     site {
       siteMetadata {
         author
-        social {
-          twitter
-        }
       }
     }
   }
 `
 
-export default Bio
+export default Bio;
