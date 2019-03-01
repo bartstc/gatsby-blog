@@ -13,10 +13,10 @@ class BlogIndex extends React.Component {
     const { title, subtitle } = data.site.siteMetadata;
     const posts = data.allContentfulPost.edges;
 
-    console.log(data.site.siteMetadata)
+    console.log(this.props)
 
     return (
-      <Layout location={this.props.location} title={title} subtitle={subtitle}>
+      <Layout location={this.props.location} >
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}

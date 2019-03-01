@@ -34,3 +34,24 @@ button {
   background: transparent;
   border: none;
 }
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.info {
+  font-size: .85rem;
+}
+
+@media (min-width: 768px) {
+  .sidebar-title {
+    font-size: 1.6rem;
+  }
+
+  .info {
+    font-size: 1rem;
+  }
+}
