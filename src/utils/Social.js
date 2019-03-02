@@ -8,10 +8,10 @@ import twitter from '../assets/icons/twitter.png';
 
 const Social = () => (
   <SocialWrapper>
-    <li><a href="https://www.facebook.com" alt="facebook" target="_blank" rel="noopener noreferrer"><img src={facebook} /></a></li>
-    <li><a href="https://www.gplus.com" alt="google plus" target="_blank" rel="noopener noreferrer"><img src={google} /></a></li>
-    <li><a href="https://www.instagram.com" alt="instagram" target="_blank" rel="noopener noreferrer"><img src={instagram} /></a></li>
-    <li><a href="https://www.twitter.com" alt="twitter" target="_blank" rel="noopener noreferrer"><img src={twitter} /></a></li>
+    <li><a href="https://www.facebook.com" alt="facebook" target="_blank" rel="noopener noreferrer"><img src={facebook} alt="" /></a></li>
+    <li><a href="https://www.gplus.com" alt="google plus" target="_blank" rel="noopener noreferrer"><img src={google} alt="" /></a></li>
+    <li><a href="https://www.instagram.com" alt="instagram" target="_blank" rel="noopener noreferrer"><img src={instagram} alt="" /></a></li>
+    <li><a href="https://www.twitter.com" alt="twitter" target="_blank" rel="noopener noreferrer"><img src={twitter} alt="" /></a></li>
   </SocialWrapper>
 );
 

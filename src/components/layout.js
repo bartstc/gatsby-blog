@@ -22,7 +22,7 @@ class Layout extends React.Component {
 }
 
 const Main = styled.div`
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
 
   @media (min-width: 768px) {

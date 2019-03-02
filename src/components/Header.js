@@ -68,7 +68,7 @@ const HeaderWrapper = styled.header`
     margin-bottom: 1.5em;
     padding-bottom: 1em;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1000px;
     border-bottom: 2px solid #000;
 
     .title {
@@ -91,11 +91,11 @@ const HeaderWrapper = styled.header`
   }
 `;
 
-const Nav = styled.nav`
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
+// const Nav = styled.nav`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+// `;
 
 export const headerQuery = graphql`
   query {

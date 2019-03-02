@@ -10,7 +10,7 @@ const Footer = () => (
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
   margin-top: 3em;
   border-top: 2px solid #000;
