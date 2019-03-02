@@ -73,6 +73,7 @@ const Links = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 1.6em;
 `;
 
 const ShareWrapper = styled.div`

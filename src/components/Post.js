@@ -13,20 +13,20 @@ const Post = ({ children, postContent }) => {
   return (
     <PostWrapper key={post.slug}>
       <Link className="main-link" to={post.slug}>
-        <Title title={post.title} />
+        <Title>{post.title}</Title>
       </Link>
       <small className="date">{post.date}</small>
       <Link to={post.slug}>
         <Image fluid={post.image.fluid} />
       </Link>
       {children}
-      <span className="bold info">Categories:</span>
+      <p className="bold info">Categories:</p>
       <ul className="link-group">
         {post.categories.map(category => (
           <li key={category} className="link"><Link className="info" to={`/category/${category}`}>{category}</Link></li>
         ))}
       </ul>
-      <span className="bold info">Tags:</span>
+      <p className="bold info">Tags:</p>
       <ul className="link-group">
         {post.tags.map(tag => (
           <li key={tag} className="link"><Link className="info" to={`/tag/${slugify(tag)}`}>{tag}</Link></li>
@@ -49,6 +49,7 @@ const PostWrapper = styled.article`
     margin-right: .4em;
     border-bottom: 1px solid transparent;
     transition: border-bottom .2s ease-in-out;
+    line-height: .5em;
 
     &:hover {
       border-bottom: 1px solid #000;
@@ -57,6 +58,7 @@ const PostWrapper = styled.article`
 
   .link-group {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .date {

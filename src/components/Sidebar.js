@@ -1,7 +1,8 @@
 import React from 'react';
 import Bio from './SidebarComponents/Bio'
-import Tags from './SidebarComponents/Tags';
 import LatestPosts from './SidebarComponents/LatestPosts';
+import Tags from './SidebarComponents/Tags';
+import Newsletter from './SidebarComponents/Newsletter';
 
 const Sidebar = ({ path }) => {
 
@@ -10,6 +11,7 @@ const Sidebar = ({ path }) => {
       {path !== '/about' && <Bio />}
       <LatestPosts />
       <Tags />
+      <Newsletter />
     </aside>
   )
 };

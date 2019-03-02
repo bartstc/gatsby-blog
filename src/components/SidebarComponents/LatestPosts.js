@@ -13,7 +13,7 @@ const LatestPosts = () => (
 
       return (
         <article className="sidebar-article">
-          <TitleCenter title="Latests Posts" />
+          <TitleCenter>Latest posts</TitleCenter>
           <ul>
             {posts.map(post => {
               const { node } = post;
@@ -41,6 +41,7 @@ const LatestPost = styled.ul`
   .title {
     text-transform: capitalize;
     font-size: 1rem;
+    font-weight: 600;
     margin-top: .3em;
   }
 

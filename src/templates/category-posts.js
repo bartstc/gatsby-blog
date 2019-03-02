@@ -7,9 +7,9 @@ import Post from '../components/Post';
 import { PageTitle } from '../utils/Title';
 
 const TagPosts = ({ data, pageContext, location }) => {
-  const { tag } = pageContext;
+  const { category } = pageContext;
   const posts = data.allContentfulPost.edges;
-  const pageTitle = `${posts.length} post${(posts.length === 1) ? '' : 's'} tagged with ${tag}`;
+  const pageTitle = `${posts.length} post${(posts.length === 1) ? '' : 's'} tagged with ${category}`;
 
   return (
     <Layout location={location} >
@@ -29,8 +29,8 @@ const TagPosts = ({ data, pageContext, location }) => {
 
 export default TagPosts;
 
-export const tagQuery = graphql`
-  query BlogPostsByTag($tag: String!) {
+export const categoryQuery = graphql`
+  query BlogPostsByCategory($category: String!) {
     site {
       siteMetadata {
         title
@@ -38,7 +38,7 @@ export const tagQuery = graphql`
       }
     }
     allContentfulPost (
-      filter: {tags: {in: [$tag]}}
+      filter: {categories: {in: [$category]}}
       sort: {fields: [date], order: DESC}
     ) {
       edges {

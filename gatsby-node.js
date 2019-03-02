@@ -6,7 +6,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   const templates = {
     singlePost: path.resolve(`src/templates/blog-post.js`),
-    tagPosts: path.resolve('src/templates/tag-posts.js'),
+    tagPosts: path.resolve(`src/templates/tag-posts.js`),
+    categoryPosts: path.resolve(`src/templates/category-posts.js`),
     // postList: path.resolve('src/templates/post-list.js')
   }
 
@@ -17,10 +18,7 @@ exports.createPages = ({ graphql, actions }) => {
         allContentfulPost {
           edges {
             node {
-              title
-              date
               slug
-              description
               tags
               categories
             }
@@ -54,16 +52,8 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Get all tags
     let tags = [];
-
     posts.forEach(post => {
       tags = tags.concat(post.node.tags);
-    })
-
-    // tags = ['design', 'architecture', '...'] // all tags we have ...
-    // {design: 5, architecture: 6, ...} // should convert into object like this
-    let tagPostCounts = {};
-    tags.forEach(tag => {
-      tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1; // return tag or 0(when tag does not exist) or increment tag by one if it arleady exist
     });
 
     tags = tags.filter((v, i, a) => a.indexOf(v) === i); // tags does not be duplicate
@@ -75,6 +65,25 @@ exports.createPages = ({ graphql, actions }) => {
         component: templates.tagPosts,
         context: {
           tag
+        }
+      })
+    })
+
+    // Get all categories
+    let categories = [];
+    posts.forEach(post => {
+      categories = categories.concat(post.node.categories);
+    });
+
+    categories = categories.filter((v, i, a) => a.indexOf(v) === i); // categories does not be duplicate
+
+    // Create tag posts pages
+    categories.forEach(category => {
+      createPage({
+        path: `/category/${slugify(category)}`,
+        component: templates.categoryPosts,
+        context: {
+          category
         }
       })
     })

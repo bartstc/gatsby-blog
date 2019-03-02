@@ -27,7 +27,7 @@ const Tags = () => (
 
       return (
         <article className="sidebar-article">
-          <TitleCenter title="Tags" />
+          <TitleCenter>Tags</TitleCenter>
           <TagList>
             {tags.map(tag => (
               <li className="tag" key={tag}>

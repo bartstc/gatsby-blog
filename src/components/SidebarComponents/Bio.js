@@ -6,7 +6,7 @@ import { TitleCenter } from "../../utils/Title";
 function Bio() {
   return (
     <article className="sidebar-article">
-      <TitleCenter title="About me" />
+      <TitleCenter>About me</TitleCenter>
       <StaticQuery
         query={graphql`
           query {

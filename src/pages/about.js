@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby";
 import Img from 'gatsby-image';
 import Layout from '../components/layout';
 import { TitleCenter } from '../utils/Title';
@@ -31,7 +31,7 @@ const About = (props) => {
       <Form>
         <input type="text" placeholder="Email ..." />
         <textarea placeholder="Message ..." />
-        <Button content="send" />
+        <Button>Send</Button>
       </Form>
     </Layout>
   );
@@ -58,7 +58,7 @@ const Form = styled.form`
     border: none;
     border-bottom: 1px solid #000;
     line-height: 1.3rem;
-    margin-bottom: 1em;
+    margin-bottom: .8em;
 
     &::placeholder {
       color: #000;

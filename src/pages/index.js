@@ -1,10 +1,11 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import '../index.css';
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Post from '../components/Post';
+import { Button } from '../utils/Button';
 
 class BlogIndex extends React.Component {
   render() {
@@ -20,7 +21,11 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => (
           <Post key={node.id} postContent={node}>
             <p className="info">{node.description}</p>
+            <Link to={node.slug}>
+              <Button>Read more</Button>
+            </Link>
           </Post>
+
         ))}
       </Layout>
     )
