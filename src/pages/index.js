@@ -7,29 +7,26 @@ import SEO from "../components/seo";
 import Post from '../components/Post';
 import { Button } from '../utils/Button';
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props;
-    const posts = data.allContentfulPost.edges;
+const BlogIndex = (props) => {
+  const posts = props.data.allContentfulPost.edges;
 
-    return (
-      <Layout location={this.props.location} >
-        <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-        />
-        {posts.map(({ node }) => (
-          <Post key={node.id} postContent={node}>
-            <p className="info">{node.description}</p>
-            <Link to={node.slug}>
-              <Button>Read more</Button>
-            </Link>
-          </Post>
+  return (
+    <Layout location={props.location} >
+      <SEO
+        title="All posts"
+        keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+      />
+      {posts.map(({ node }) => (
+        <Post key={node.id} postContent={node}>
+          <p className="info">{node.description}</p>
+          <Link to={node.slug}>
+            <Button>Read more</Button>
+          </Link>
+        </Post>
 
-        ))}
-      </Layout>
-    )
-  }
+      ))}
+    </Layout>
+  )
 }
 
 export default BlogIndex;

@@ -10,8 +10,8 @@ const Tags = () => (
     query={tagsQuery}
     render={data => {
       const posts = data.allContentfulPost.edges;
-      let tags = [];
 
+      let tags = [];
       posts.forEach(post => {
         tags = tags.concat(post.node.tags);
       });

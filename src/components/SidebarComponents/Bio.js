@@ -1,16 +1,17 @@
 import React from "react";
 import { StaticQuery, graphql, Link } from "gatsby";
 import Img from "gatsby-image";
+
 import { TitleCenter } from "../../utils/Title";
 
-function Bio() {
+const Bio = () => {
   return (
     <article className="sidebar-article">
       <TitleCenter>About me</TitleCenter>
       <StaticQuery
         query={graphql`
           query {
-            placeholderImage: file(relativePath: { eq: "img/author.jpeg" }) {
+            placeholderImage: file(relativePath: { eq: "img/me.jpg" }) {
               childImageSharp {
                 fluid(maxWidth: 900) {
                   ...GatsbyImageSharpFluid

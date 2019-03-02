@@ -39,7 +39,7 @@ const Post = ({ children, postContent }) => {
 const PostWrapper = styled.article`
   display: flex;
   flex-direction: column;
-  margin-bottom: 2.2em;
+  margin-bottom: 3em;
 
   .main-link {
     align-self: flex-start;

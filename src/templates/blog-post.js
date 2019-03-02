@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import styled from 'styled-components';
 
 import Layout from "../components/layout";
@@ -11,24 +11,23 @@ import google from '../assets/icons/g_plus.png';
 import instagram from '../assets/icons/instagram.png';
 import twitter from '../assets/icons/twitter.png';
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = this.props.data.contentfulPost;
-    const siteTitle = this.props.data.site.siteMetadata.title;
-    const { previous, next } = this.props.pageContext; // we have access to that values thanks to context object defined in request in gatsby-node.js!!!
+const BlogPostTemplate = (props) => {
+  const post = props.data.contentfulPost;
+  const siteTitle = props.data.site.siteMetadata.title;
+  // const { previous, next } = props.pageContext; // we have access to that values thanks to context object defined in request in gatsby-node.js
 
-    const baseUrl = 'https://www.m-blog-example.netlify.com';
+  const baseUrl = 'https://www.m-blog-example.netlify.com';
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={post.title}
-          description={post.description}
-        />
-        <Post postContent={post}>
-          <div className="info" dangerouslySetInnerHTML={{ __html: post.content.childContentfulRichText.html }} />
+  return (
+    <Layout location={props.location} title={siteTitle}>
+      <SEO
+        title={post.title}
+        description={post.description}
+      />
+      <Post postContent={post}>
+        <div className="info" dangerouslySetInnerHTML={{ __html: post.content.childContentfulRichText.html }} />
 
-          <nav>
+        {/* <nav>
             <Links>
               <li className="info">
                 {previous && (
@@ -45,36 +44,35 @@ class BlogPostTemplate extends React.Component {
                 )}
               </li>
             </Links>
-          </nav>
-          <ShareWrapper className="share">
-            <p className="info bold">Share this post</p>
-            <SocialLinks>
-              <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
-                <img src={facebook} alt="" />
-              </a></li>
-              <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
-                <img src={google} alt="" />
-              </a></li>
-              <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
-                <img src={instagram} alt="" />
-              </a></li>
-              <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
-                <img src={twitter} alt="" />
-              </a></li>
-            </SocialLinks>
-          </ShareWrapper>
-        </Post>
-      </Layout>
-    )
-  }
+          </nav> */}
+        <ShareWrapper className="share">
+          <p className="info bold">Share this post</p>
+          <SocialLinks>
+            <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
+              <img src={facebook} alt="" />
+            </a></li>
+            <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
+              <img src={google} alt="" />
+            </a></li>
+            <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
+              <img src={instagram} alt="" />
+            </a></li>
+            <li className="info"><a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${post.slug}`} className="facebook" target="_blank" rel="noopener noreferrer">
+              <img src={twitter} alt="" />
+            </a></li>
+          </SocialLinks>
+        </ShareWrapper>
+      </Post>
+    </Layout>
+  )
 }
 
-const Links = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 1.6em;
-`;
+// const Links = styled.ul`
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   margin-top: 1.6em;
+// `;
 
 const ShareWrapper = styled.div`
   display: flex;

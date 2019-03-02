@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import barsIcon from '../assets/icons/hamburger.png';
-import * as styles from '../utils/styles';
 
 import Social from '../utils/Social';
 
@@ -82,7 +81,7 @@ const HeaderWrapper = styled.header`
     
     .subtitle {
       font-size: .85rem;
-      font-weight: ${styles.fontWeight.light};
+      font-weight: 300;
 
       @media (min-width: 992px) {
         font-size: 1.1rem;
