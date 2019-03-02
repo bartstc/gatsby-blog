@@ -16,7 +16,7 @@ const TagPosts = (props) => {
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
       {posts.map(({ node }) => (
-        <Post key={node.title} postContent={node}>
+        <Post key={node.id} postContent={node}>
           <p className="info">{node.description}</p>
         </Post>
       ))}
@@ -36,6 +36,7 @@ export const tagQuery = graphql`
     }
     allContentfulPost (
       filter: {tags: {in: [$tag]}}
+      sort: {fields: [date], order: DESC}
     ) {
       edges {
         node {

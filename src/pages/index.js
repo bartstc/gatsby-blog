@@ -18,7 +18,7 @@ class BlogIndex extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         {posts.map(({ node }) => (
-          <Post key={node.title} postContent={node}>
+          <Post key={node.id} postContent={node}>
             <p className="info">{node.description}</p>
           </Post>
         ))}
@@ -40,6 +40,7 @@ export const pageQuery = graphql`
     allContentfulPost {
       edges {
         node {
+          id
           title
           date (formatString: "MMMM Do YYYY")
           description
