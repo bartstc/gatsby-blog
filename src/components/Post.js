@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "gatsby";
 import Image from 'gatsby-image';
 import styled from 'styled-components';
+import { slugify } from '../utils/slugify';
 import '../index.css';
 
 import { Title } from "../utils/Title";
@@ -21,14 +22,14 @@ const Post = ({ children, postContent }) => {
       {children}
       <span className="bold info">Categories:</span>
       <ul className="link-group">
-        {post.categories.split(', ').map(category => (
-          <li key={category} className="link"><Link className="info" to={`/categories/${category}`}>{category}</Link></li>
+        {post.categories.map(category => (
+          <li key={category} className="link"><Link className="info" to={`/category/${category}`}>{category}</Link></li>
         ))}
       </ul>
       <span className="bold info">Tags:</span>
       <ul className="link-group">
-        {post.tags.split(', ').map(tag => (
-          <li key={tag} className="link"><Link className="info" to={`/tags/${tag}`}>{tag}</Link></li>
+        {post.tags.map(tag => (
+          <li key={tag} className="link"><Link className="info" to={`/tag/${slugify(tag)}`}>{tag}</Link></li>
         ))}
       </ul>
     </PostWrapper>

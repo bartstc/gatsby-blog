@@ -1,11 +1,11 @@
 import React from "react";
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql, Link } from "gatsby";
 import Img from "gatsby-image";
-import { TitleCenter } from "../utils/Title";
+import { TitleCenter } from "../../utils/Title";
 
 function Bio() {
   return (
-    <article>
+    <article className="sidebar-article">
       <TitleCenter title="About me" />
       <StaticQuery
         query={graphql`
@@ -19,9 +19,9 @@ function Bio() {
             }
           }
         `}
-        render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} />}
+        render={data => <Link to="/about"><Img fluid={data.placeholderImage.childImageSharp.fluid} /></Link>}
       />
-      <p className="info" style={{ marginTop: '.5em' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ut mollitia cupiditate, eaque saepe accusamus consectetur possimus repellendus ab natus!</p>
+      <p className="info" style={{ marginTop: '.5em', fontSize: '.85rem' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ut mollitia cupiditate, eaque saepe accusamus consectetur possimus repellendus ab natus!</p>
     </article>
   )
 }

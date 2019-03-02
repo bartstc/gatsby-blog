@@ -22,6 +22,7 @@ const TitleWrapper = styled.h2`
 const TitleCenterWrapper = styled(TitleWrapper)`
   text-align: center;
   margin-bottom: .6em;
+  border-bottom: 2px solid #000;
 
   @media (min-width: 768px) {
     font-size: 1.2rem;

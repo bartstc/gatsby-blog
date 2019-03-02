@@ -34,6 +34,10 @@ button {
   border: none;
 }
 
+.sidebar-article {
+  margin-bottom: 1.6em;
+}
+
 .sidebar-title {
   font-size: 1.2rem;
   font-weight: 600;
