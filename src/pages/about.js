@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { StaticQuery, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from '../components/layout';
-import Title from '../utils/Title';
-import Button from '../utils/Button';
+import { TitleCenter } from '../utils/Title';
+import { Button } from '../utils/Button';
 
-const About = () => {
+const About = (props) => {
+
   return (
-    <Layout>
-      <Title title="About me" />
+    <Layout path={props.location.pathname}>
+      <TitleCenter title="About me" />
       <StaticQuery
         query={graphql`
           query {

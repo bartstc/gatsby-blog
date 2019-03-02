@@ -6,15 +6,14 @@ import Footer from "./Footer";
 
 class Layout extends React.Component {
   render() {
-    const { title, subtitle } = this.props;
-    console.log(this.props);
+    const { title, subtitle, path } = this.props;
 
     return (
       <>
         <Header title={title} subtitle={subtitle} />
         <Main>
           <section>{this.props.children}</section>
-          <Sidebar />
+          <Sidebar path={path} />
         </Main>
         <Footer />
       </>
@@ -28,13 +27,11 @@ const Main = styled.div`
 
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: 72% 28%;
-    grid-column-gap: 1em;
-  }
-
-  @media (min-width: 992px) {
-    grid-column-gap: 2em;
+    grid-template-columns: 72% calc(28% - 1.5em);
+    grid-column-gap: 1.5em;
   }
 `;
 
 export default Layout;
+
+// this.props.location.pathname returns in layout, template or page

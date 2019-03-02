@@ -13,8 +13,7 @@ body {
 
 #___gatsby {
   box-sizing: border-box;
-  /* width: 100%; */
-  padding: 0 .5em;
+  padding: 0 .7em;
 }
 
 img {
@@ -44,6 +43,7 @@ button {
 
 .info {
   font-size: .85rem;
+  line-height: 1.4em;
 }
 
 @media (min-width: 768px) {
@@ -54,4 +54,8 @@ button {
   .info {
     font-size: 1rem;
   }
+}
+
+.bold {
+  font-weight: 600;
 }

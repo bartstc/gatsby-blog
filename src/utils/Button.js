@@ -1,17 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({ content }) => (
+export const Button = ({ content }) => (
   <ButtonWrapper>{content}</ButtonWrapper>
 );
 
+export const LinkButton = ({ content }) => (
+  <LinkButtonWrapper>{content}</LinkButtonWrapper>
+)
+
 const ButtonWrapper = styled.button`
-  width: 140px;
-  height: 35px;
+  width: 120px;
+  height: 30px;
   border: none;
   background: #000;
   color: #fff;
   text-transform: uppercase;
 `;
 
-export default Button;
+const LinkButtonWrapper = styled(ButtonWrapper)`
+
+`;

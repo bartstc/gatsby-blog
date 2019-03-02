@@ -1,9 +1,13 @@
 import React from 'react';
+import Bio from './bio';
 
-const Sidebar = () => (
-  <aside>
-    <h2>Sidebar</h2>
-  </aside>
-)
+const Sidebar = ({ path }) => {
+
+  return (
+    <aside>
+      {path !== '/about' && <Bio />}
+    </aside>
+  )
+};
 
 export default Sidebar;
