@@ -12,7 +12,7 @@ const LatestPosts = () => (
       const posts = data.allContentfulPost.edges;
 
       return (
-        <article className="sidebar-article">
+        <section className="sidebar-article">
           <TitleCenter>Latest posts</TitleCenter>
           <ul>
             {posts.map(post => {
@@ -29,14 +29,14 @@ const LatestPosts = () => (
               )
             })}
           </ul>
-        </article>
+        </section>
       )
     }}
   />
 );
 
-const LatestPost = styled.ul`
-  margin-bottom: 1.4em;
+const LatestPost = styled.article`
+  margin-bottom: 1em;
 
   .title {
     text-transform: capitalize;

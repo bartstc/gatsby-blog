@@ -1,10 +1,12 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import styled from 'styled-components';
+import Img from 'gatsby-image';
 
 import Layout from "../components/layout";
 import Post from '../components/Post';
 import SEO from "../components/seo";
+import { TitleCenter } from '../utils/Title';
 
 import facebook from '../assets/icons/fb.png';
 import google from '../assets/icons/g_plus.png';
@@ -13,8 +15,8 @@ import twitter from '../assets/icons/twitter.png';
 
 const BlogPostTemplate = (props) => {
   const post = props.data.contentfulPost;
+  const relatedPosts = props.data.allContentfulPost.edges;
   const siteTitle = props.data.site.siteMetadata.title;
-  // const { previous, next } = props.pageContext; // we have access to that values thanks to context object defined in request in gatsby-node.js
 
   const baseUrl = 'https://www.m-blog-example.netlify.com';
 
@@ -26,25 +28,6 @@ const BlogPostTemplate = (props) => {
       />
       <Post postContent={post}>
         <div className="info" dangerouslySetInnerHTML={{ __html: post.content.childContentfulRichText.html }} />
-
-        {/* <nav>
-            <Links>
-              <li className="info">
-                {previous && (
-                  <Link to={previous.slug} rel="prev">
-                    ← {previous.title}
-                  </Link>
-                )}
-              </li>
-              <li className="info">
-                {next && (
-                  <Link to={next.slug} rel="next">
-                    {next.title} →
-                </Link>
-                )}
-              </li>
-            </Links>
-          </nav> */}
         <ShareWrapper className="share">
           <p className="info bold">Share this post</p>
           <SocialLinks>
@@ -62,17 +45,30 @@ const BlogPostTemplate = (props) => {
             </a></li>
           </SocialLinks>
         </ShareWrapper>
+
+        <RelatedPosts>
+          <TitleCenter>Related posts</TitleCenter>
+          <div className="related-posts-wrapper">
+            {relatedPosts
+              ?
+              relatedPosts.map(({ node }) => (
+                <article className="related-post" key={node.id}>
+                  <Link to={node.slug}>
+                    <Img fluid={node.image.fluid} />
+                  </Link>
+                  <h2 className="title">{node.title}</h2>
+                  <p className="date">{node.date}</p>
+                </article>
+              ))
+              :
+              <p>There is no any related posts.</p>
+            }
+          </div>
+        </RelatedPosts>
       </Post>
     </Layout>
   )
 }
-
-// const Links = styled.ul`
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-//   margin-top: 1.6em;
-// `;
 
 const ShareWrapper = styled.div`
   display: flex;
@@ -90,10 +86,39 @@ const SocialLinks = styled.ul`
   }
 `;
 
+const RelatedPosts = styled.section`
+  margin-top: 1.6em;
+
+  .related-posts-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .related-post {
+    flex: 45%;
+    max-width: 45%;
+    
+    &:first-child {
+      margin-right: .8em;
+
+      @media (min-width: 992px) {
+        margin-right: 2em;
+      }
+    }
+
+    .title {
+      text-transform: capitalize;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: .3em;
+    }
+  }
+`;
+
 export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($slug: String!, $mainCategory: String!, $mainTag: String!) {
     site {
       siteMetadata {
         title
@@ -116,6 +141,26 @@ export const pageQuery = graphql`
       content {
         childContentfulRichText {
           html
+        }
+      }
+    }
+    allContentfulPost (
+      filter: {slug: {ne: $slug}, categories: {in: [$mainCategory]}, tags: {in: [$mainTag]}}
+      sort: {fields: [date], order: DESC}
+      limit: 2
+    ) 
+    {
+      edges {
+        node {
+          id
+          slug
+          title
+          date (formatString: "MMMM Do YYYY")
+          image {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
         }
       }
     }

@@ -33,9 +33,9 @@ exports.createPages = ({ graphql, actions }) => {
 
     const posts = res.data.allContentfulPost.edges;
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+    posts.forEach(post => {
+      const mainTag = post.node.tags[0];
+      const mainCategory = post.node.categories[0];
 
       // generate page for each post
       // all values which we have in context object we can use in fetching data in blog-post as required variables ($slug) or display as content on page
@@ -44,8 +44,8 @@ exports.createPages = ({ graphql, actions }) => {
         component: templates.singlePost,
         context: {
           slug: post.node.slug,
-          previous,
-          next,
+          mainTag,
+          mainCategory
         },
       })
     })
