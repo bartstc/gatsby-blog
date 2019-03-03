@@ -22,12 +22,12 @@ const SideDrawer = (props) => {
       return (
         <Nav className={attachedClasses}>
           <ul>
-            <li><Link className="nav-link" to="/">Home</Link></li>
-            <li><Link className="nav-link" to="/about">About Me</Link></li>
+            <li><Link onClick={props.closeMenu} className="nav-link" to="/">Home</Link></li>
+            <li><Link onClick={props.closeMenu} className="nav-link" to="/about">About Me</Link></li>
             <span className="space" />
             {categories.map(category => (
               <li key={category}>
-                <Link className="nav-link" to={`/category/${category}`}>{category}</Link>
+                <Link onClick={props.closeMenu} className="nav-link" to={`/category/${category}`}>{category}</Link>
               </li>
             ))}
           </ul>
@@ -47,7 +47,7 @@ const Nav = styled.nav`
   height: 100vh;
   min-width: 240px;
   background: #fff;
-  padding: 3em 2em 0 2em;
+  padding: 5em 2em 0 2em;
   box-shadow: 2px 3px 10px -2px rgba(0, 0, 0, .6);
   transition: transform .3s ease-in-out;
 
@@ -57,6 +57,13 @@ const Nav = styled.nav`
 
   &.Close {
     transform: translateX(-100%);
+  }
+
+  .close-menu {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    width: 40px;
   }
 
   .nav-link {

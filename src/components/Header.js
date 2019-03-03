@@ -43,7 +43,10 @@ const HeaderWrapper = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1em;
+
+  @media (min-width: 992px) {
+    margin-bottom: 1em;
+  }
 
   .topbar {
     display: flex;

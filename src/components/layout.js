@@ -21,7 +21,7 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <SideDrawer open={showSideDrawer} />
+      <SideDrawer open={showSideDrawer} closeMenu={sideDrawerClose} />
       <Backdrop show={showSideDrawer} closeMenu={sideDrawerClose} />
       <Header toggleMenu={sideDrawerToggleHandler} />
       <Transition location={location}>
