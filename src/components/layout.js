@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import PageTransition from 'gatsby-plugin-page-transitions';
 
@@ -8,41 +8,31 @@ import Footer from "./Footer";
 import Backdrop from './Backdrop';
 import SideDrawer from './SideDrawer';
 
-class Layout extends React.Component {
-  state = {
-    showSideDrawer: false
+const Layout = (props) => {
+  const [showSideDrawer, setSideDrawer] = useState(false);
+
+  const sideDrawerToggleHandler = () => {
+    setSideDrawer(!showSideDrawer)
   };
 
-  sideDrawerToggleHandler = () => {
-    this.setState(prevState => {
-      return {
-        showSideDrawer: !prevState.showSideDrawer
-      }
-    })
+  const sideDrawerClose = () => {
+    setSideDrawer(false);
   };
 
-  sideDrawerClose = () => {
-    this.setState({
-      showSideDrawer: false
-    });
-  };
+  const { title, subtitle, path, children } = props;
 
-  render() {
-    const { title, subtitle, path } = this.props;
-
-    return (
-      <PageTransition>
-        <SideDrawer open={this.state.showSideDrawer} />
-        <Backdrop show={this.state.showSideDrawer} closeMenu={this.sideDrawerClose} />
-        <Header title={title} subtitle={subtitle} toggleMenu={this.sideDrawerToggleHandler} />
-        <Main>
-          <section>{this.props.children}</section>
-          <Sidebar path={path} />
-        </Main>
-        <Footer />
-      </PageTransition>
-    )
-  }
+  return (
+    <PageTransition>
+      <SideDrawer open={showSideDrawer} />
+      <Backdrop show={showSideDrawer} closeMenu={sideDrawerClose} />
+      <Header title={title} subtitle={subtitle} toggleMenu={sideDrawerToggleHandler} />
+      <Main>
+        <section>{children}</section>
+        <Sidebar path={path} />
+      </Main>
+      <Footer />
+    </PageTransition>
+  )
 }
 
 const Main = styled.div`
