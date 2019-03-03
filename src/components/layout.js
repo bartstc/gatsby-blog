@@ -52,8 +52,8 @@ const Main = styled.div`
 
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: 72% calc(28% - 1.5em);
-    grid-column-gap: 1.5em;
+    grid-template-columns: calc(72% - 1em) calc(28% - 1.5em);
+    grid-column-gap: 2.5em;
   }
 `;
 

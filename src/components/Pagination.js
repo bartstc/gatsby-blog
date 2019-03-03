@@ -30,6 +30,7 @@ const Pagination = ({ currentPage, numberOfPages }) => {
 const PaginationLinks = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 1.5em;
 `;
 
 export default Pagination;
