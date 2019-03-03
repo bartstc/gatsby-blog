@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
     singlePost: path.resolve(`src/templates/blog-post.js`),
     tagPosts: path.resolve(`src/templates/tag-posts.js`),
     categoryPosts: path.resolve(`src/templates/category-posts.js`),
-    // postList: path.resolve('src/templates/post-list.js')
+    postList: path.resolve(`src/templates/post-list.js`)
   }
 
   // fetching data from contentful
@@ -84,6 +84,30 @@ exports.createPages = ({ graphql, actions }) => {
         component: templates.categoryPosts,
         context: {
           category
+        }
+      })
+    });
+
+    // pagination
+    const postsPerPage = 5;
+    const numberOfPages = Math.ceil(posts.length / postsPerPage); // number of pages with limited amount of pages
+
+    // Array.from - create array and fill it with elements
+    const pagesWithLimitedPosts = Array.from({ length: numberOfPages });
+    pagesWithLimitedPosts.forEach((item, index) => {
+      const isFirstPage = index === 0; // true/false
+      const currentPage = index + 1;
+
+      if (isFirstPage) return; // becouse we dont want to create second page of index (index.js is the first page of posts)
+
+      createPage({
+        path: `/page/${currentPage}`,
+        component: templates.postList,
+        context: {
+          limit: postsPerPage,
+          skip: index * postsPerPage, // how many posts we must skip to correctly fill next page
+          currentPage,
+          numberOfPages
         }
       })
     })

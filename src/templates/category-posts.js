@@ -9,7 +9,7 @@ import { PageTitle } from '../utils/Title';
 const TagPosts = ({ data, pageContext, location }) => {
   const { category } = pageContext;
   const posts = data.allContentfulPost.edges;
-  const pageTitle = `${posts.length} post${(posts.length === 1) ? '' : 's'} tagged with ${category}`;
+  const pageTitle = `${posts.length} post${(posts.length === 1) ? '' : 's'} in the ${category} category`;
 
   return (
     <Layout location={location} >

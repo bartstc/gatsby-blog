@@ -5,14 +5,14 @@ import barsIcon from '../assets/icons/hamburger.png';
 
 import Social from '../utils/Social';
 
-const Header = () => (
+const Header = (props) => (
   <StaticQuery query={headerQuery} render={data => {
     const { title, subtitle } = data.site.siteMetadata;
 
     return (
       <HeaderWrapper>
         <div className="topbar">
-          <button className="toggle">
+          <button onClick={props.toggleMenu} className="toggle">
             <img src={barsIcon} alt="open menu" />
           </button>
           <Social />
@@ -39,7 +39,6 @@ const Header = () => (
 );
 
 const HeaderWrapper = styled.header`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,12 +88,6 @@ const HeaderWrapper = styled.header`
     }
   }
 `;
-
-// const Nav = styled.nav`
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-// `;
 
 export const headerQuery = graphql`
   query {

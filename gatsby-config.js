@@ -84,7 +84,13 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       }
     },
-    `@contentful/gatsby-transformer-contentful-richtext` // allows to convert contentful data (content) into html
+    `@contentful/gatsby-transformer-contentful-richtext`, // allows to convert contentful data (content) into html
+    {
+      resolve: 'gatsby-plugin-page-transitions',
+      options: {
+        transitionTime: 500
+      }
+    }
   ],
 }
 

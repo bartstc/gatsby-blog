@@ -1,14 +1,16 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, StaticQuery, Link } from "gatsby";
 import '../index.css';
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Post from '../components/Post';
 import { Button } from '../utils/Button';
+import Pagination from "../components/Pagination";
 
 const BlogIndex = (props) => {
-  const posts = props.data.allContentfulPost.edges;
+  const postsPerPage = 5;
+  let numberOfPages;
 
   return (
     <Layout location={props.location} >
@@ -16,15 +18,26 @@ const BlogIndex = (props) => {
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
-      {posts.map(({ node }) => (
-        <Post key={node.id} postContent={node}>
-          <p className="info">{node.description}</p>
-          <Link to={node.slug}>
-            <Button>Read more</Button>
-          </Link>
-        </Post>
+      <StaticQuery query={pageQuery} render={data => {
+        numberOfPages = Math.ceil(data.allContentfulPost.totalCount / postsPerPage);
+        const posts = data.allContentfulPost.edges;
 
-      ))}
+        return (
+          <>
+            {posts.map(({ node }) => (
+              <Post key={node.id} postContent={node}>
+                <p className="info">{node.description}</p>
+                <Link to={node.slug}>
+                  <Button>Read more</Button>
+                </Link>
+              </Post>
+            ))}
+            <Pagination currentPage={1} numberOfPages={numberOfPages} />
+          </>
+        )
+
+      }}
+      />
     </Layout>
   )
 }
@@ -39,7 +52,11 @@ export const pageQuery = graphql`
         subtitle
       }
     }
-    allContentfulPost {
+    allContentfulPost (
+      sort: {fields: [date], order: DESC}
+      limit: 5
+    ) {
+      totalCount
       edges {
         node {
           id
@@ -58,4 +75,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

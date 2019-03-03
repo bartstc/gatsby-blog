@@ -11,7 +11,7 @@ const Bio = () => {
       <StaticQuery
         query={graphql`
           query {
-            placeholderImage: file(relativePath: { eq: "img/me.jpg" }) {
+            placeholderImage: file(relativePath: { eq: "img/author.jpeg" }) {
               childImageSharp {
                 fluid(maxWidth: 900) {
                   ...GatsbyImageSharpFluid
