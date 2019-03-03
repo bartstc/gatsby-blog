@@ -1,14 +1,14 @@
 const dotenv = require('dotenv');
-
-if (process.env.NODE_ENV !== 'production') dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+};
 
 module.exports = {
   siteMetadata: {
     title: `M`,
     subtitle: `Travel, lifestyle, architecture and more.`,
     author: `Bart`,
-    description: `Simple blog exmaple using Gatsby & Contentful`,
-    siteUrl: ``,
+    description: `Simple blog exmaple using Gatsby & Contentful`
   },
   plugins: [
     {
@@ -25,28 +25,6 @@ module.exports = {
         name: `assets`,
       },
     },
-    // {
-    //   resolve: `gatsby-transformer-remark`,
-    //   options: {
-    //     plugins: [
-    //       {
-    //         resolve: `gatsby-remark-images`,
-    //         options: {
-    //           maxWidth: 590,
-    //         },
-    //       },
-    //       {
-    //         resolve: `gatsby-remark-responsive-iframe`,
-    //         options: {
-    //           wrapperStyle: `margin-bottom: 1.0725rem`,
-    //         },
-    //       },
-    //       `gatsby-remark-prismjs`,
-    //       `gatsby-remark-copy-linked-files`,
-    //       `gatsby-remark-smartypants`,
-    //     ],
-    //   },
-    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -55,15 +33,14 @@ module.exports = {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `M Blog`,
+        short_name: `M Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#000`,
         display: `minimal-ui`,
         icon: `src/assets/gatsby-icon.png`,
       },
@@ -83,14 +60,7 @@ module.exports = {
       options: {
         component: require.resolve(`./src/components/layout.js`)
       }
-    },
-    // `gatsby-plugin-layout`,
-    // {
-    //   resolve: 'gatsby-plugin-page-transitions',
-    //   options: {
-    //     transitionTime: 500
-    //   }
-    // }
+    }
   ],
 }
 
