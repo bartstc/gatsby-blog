@@ -71,7 +71,7 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-contentful`, // after adding plugin gatsby-source-contentful we have access to the contentful data via graphiQL
+      resolve: `gatsby-source-contentful`, // after adding plugin gatsby-source-contentful we have access to the contentful data via graphQL
       options: {
         spaceId: `t5uhlt7prm98`,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
@@ -79,11 +79,18 @@ module.exports = {
     },
     `@contentful/gatsby-transformer-contentful-richtext`, // allows to convert contentful data (content) into html
     {
-      resolve: 'gatsby-plugin-page-transitions',
+      resolve: `gatsby-plugin-layout`,
       options: {
-        transitionTime: 500
+        component: require.resolve(`./src/components/layout.js`)
       }
-    }
+    },
+    // `gatsby-plugin-layout`,
+    // {
+    //   resolve: 'gatsby-plugin-page-transitions',
+    //   options: {
+    //     transitionTime: 500
+    //   }
+    // }
   ],
 }
 

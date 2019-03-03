@@ -2,18 +2,17 @@ import React from "react";
 import { graphql, StaticQuery, Link } from "gatsby";
 import '../index.css';
 
-import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Post from '../components/Post';
 import { Button } from '../utils/Button';
 import Pagination from "../components/Pagination";
 
-const BlogIndex = (props) => {
+const BlogIndex = () => {
   const postsPerPage = 5;
   let numberOfPages;
 
   return (
-    <Layout location={props.location} >
+    <>
       <SEO
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -37,7 +36,7 @@ const BlogIndex = (props) => {
         )
       }}
       />
-    </Layout>
+    </>
   )
 }
 
@@ -75,3 +74,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+// with gatsby-plugin-layout we cant wrap page in Layout component!

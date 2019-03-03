@@ -1,18 +1,17 @@
 import React from 'react';
 import { graphql } from "gatsby";
 
-import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Post from '../components/Post';
 import { PageTitle } from '../utils/Title';
 
-const TagPosts = ({ data, pageContext, location }) => {
+const TagPosts = ({ data, pageContext }) => {
   const { tag } = pageContext;
   const posts = data.allContentfulPost.edges;
   const pageTitle = `${posts.length} post${(posts.length === 1) ? '' : 's'} tagged with ${tag}`;
 
   return (
-    <Layout location={location} >
+    <>
       <SEO
         title={`${tag[0].toUpperCase() + tag.substring(1)} tag`}
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -23,7 +22,7 @@ const TagPosts = ({ data, pageContext, location }) => {
           <p className="info">{node.description}</p>
         </Post>
       ))}
-    </Layout>
+    </>
   )
 };
 

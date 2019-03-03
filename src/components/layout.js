@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
-import PageTransition from 'gatsby-plugin-page-transitions';
+import Transition from '../utils/transition';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import Backdrop from './Backdrop';
 import SideDrawer from './SideDrawer';
 
-const Layout = (props) => {
+const Layout = ({ children, location }) => {
   const [showSideDrawer, setSideDrawer] = useState(false);
 
   const sideDrawerToggleHandler = () => {
@@ -19,23 +19,23 @@ const Layout = (props) => {
     setSideDrawer(false);
   };
 
-  const { title, subtitle, path, children } = props;
-
   return (
-    <PageTransition>
+    <>
       <SideDrawer open={showSideDrawer} />
       <Backdrop show={showSideDrawer} closeMenu={sideDrawerClose} />
-      <Header title={title} subtitle={subtitle} toggleMenu={sideDrawerToggleHandler} />
-      <Main>
-        <section>{children}</section>
-        <Sidebar path={path} />
-      </Main>
+      <Header toggleMenu={sideDrawerToggleHandler} />
+      <Transition location={location}>
+        <Main>
+          <section>{children}</section>
+          <Sidebar path={location.pathname} />
+        </Main>
+      </Transition>
       <Footer />
-    </PageTransition>
+    </>
   )
 }
 
-const Main = styled.div`
+const Main = styled.main`
   max-width: 1000px;
   margin: 0 auto;
   transition: .3s ease-in-out;
@@ -48,5 +48,3 @@ const Main = styled.div`
 `;
 
 export default Layout;
-
-// this.props.location.pathname returns in layout, template or page

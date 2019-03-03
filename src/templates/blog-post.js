@@ -3,7 +3,6 @@ import { graphql, Link } from "gatsby";
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-import Layout from "../components/layout";
 import Post from '../components/Post';
 import SEO from "../components/seo";
 import { TitleCenter } from '../utils/Title';
@@ -16,12 +15,11 @@ import twitter from '../assets/icons/twitter.png';
 const BlogPostTemplate = (props) => {
   const post = props.data.contentfulPost;
   const relatedPosts = props.data.allContentfulPost.edges;
-  const siteTitle = props.data.site.siteMetadata.title;
 
   const baseUrl = 'https://www.m-blog-example.netlify.com';
 
   return (
-    <Layout location={props.location} title={siteTitle}>
+    <>
       <SEO
         title={post.title}
         description={post.description}
@@ -66,7 +64,7 @@ const BlogPostTemplate = (props) => {
           </div>
         </RelatedPosts>
       </Post>
-    </Layout>
+    </>
   )
 }
 

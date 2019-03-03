@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 
 import SEO from "../components/seo";
-import Layout from '../components/layout';
 import Post from '../components/Post';
 import Pagination from "../components/Pagination";
 import { Button } from '../utils/Button';
@@ -13,7 +12,7 @@ const postList = (props) => {
   const { currentPage, numberOfPages } = props.pageContext;
 
   return (
-    <Layout>
+    <>
       <SEO
         title={`All posts page ${currentPage}`}
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -28,7 +27,7 @@ const postList = (props) => {
         </Post>
       ))}
       <Pagination currentPage={1} numberOfPages={numberOfPages} />
-    </Layout>
+    </>
   )
 }
 

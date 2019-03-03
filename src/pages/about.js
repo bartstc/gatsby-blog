@@ -4,12 +4,11 @@ import { StaticQuery, graphql } from "gatsby";
 import Img from 'gatsby-image';
 import SEO from '../components/seo';
 
-import Layout from '../components/layout';
 import { TitleCenter } from '../utils/Title';
 import { Button } from '../utils/Button';
 
-const About = (props) => (
-  <Layout path={props.location.pathname}>
+const About = () => (
+  <>
     <SEO
       title="About me"
       description="My short bio."
@@ -37,7 +36,7 @@ const About = (props) => (
       <textarea placeholder="Message ..." />
       <Button>Send</Button>
     </Form>
-  </Layout>
+  </>
 );
 
 const AboutTitle = styled.h2`
