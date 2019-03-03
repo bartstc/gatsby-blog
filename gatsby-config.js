@@ -55,6 +55,7 @@ module.exports = {
       }
     },
     `@contentful/gatsby-transformer-contentful-richtext`, // allows to convert contentful data (content) into html
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {
