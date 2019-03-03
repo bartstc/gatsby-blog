@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 
+import SEO from "../components/seo";
 import Layout from '../components/layout';
 import Post from '../components/Post';
 import Pagination from "../components/Pagination";
@@ -13,6 +14,10 @@ const postList = (props) => {
 
   return (
     <Layout>
+      <SEO
+        title={`All posts page ${currentPage}`}
+        keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+      />
       <PageTitle>Page {currentPage}</PageTitle>
       {posts.map(({ node }) => (
         <Post key={node.id} postContent={node}>

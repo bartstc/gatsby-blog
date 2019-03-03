@@ -2,12 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from "gatsby";
 import Img from 'gatsby-image';
+import SEO from '../components/seo';
+
 import Layout from '../components/layout';
 import { TitleCenter } from '../utils/Title';
 import { Button } from '../utils/Button';
 
 const About = (props) => (
   <Layout path={props.location.pathname}>
+    <SEO
+      title="About me"
+      description="My short bio."
+    />
     <TitleCenter>About me</TitleCenter>
     <StaticQuery
       query={graphql`

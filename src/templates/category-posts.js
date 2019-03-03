@@ -14,7 +14,7 @@ const TagPosts = ({ data, pageContext, location }) => {
   return (
     <Layout location={location} >
       <SEO
-        title="All posts"
+        title={`${category[0].toUpperCase() + category.substring(1)} category`}
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
       <PageTitle>{pageTitle}</PageTitle>

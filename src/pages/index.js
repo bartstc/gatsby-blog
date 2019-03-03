@@ -35,7 +35,6 @@ const BlogIndex = (props) => {
             <Pagination currentPage={1} numberOfPages={numberOfPages} />
           </>
         )
-
       }}
       />
     </Layout>
