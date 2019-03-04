@@ -1,11 +1,10 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 
 import Post from '../components/Post';
 import SEO from "../components/seo";
-import { TitleCenter } from '../utils/Title';
+import RelatedPosts from '../components/RelatedPosts';
 
 import facebook from '../assets/icons/fb.png';
 import google from '../assets/icons/g_plus.png';
@@ -43,26 +42,7 @@ const BlogPostTemplate = (props) => {
             </a></li>
           </SocialLinks>
         </ShareWrapper>
-
-        <RelatedPosts>
-          <TitleCenter>Related posts</TitleCenter>
-          <div className="related-posts-wrapper">
-            {relatedPosts
-              ?
-              relatedPosts.map(({ node }) => (
-                <article className="related-post" key={node.id}>
-                  <Link to={node.slug}>
-                    <Img fluid={node.image.fluid} />
-                  </Link>
-                  <h2 className="title">{node.title}</h2>
-                  <p className="date">{node.date}</p>
-                </article>
-              ))
-              :
-              <p>There is no any related posts.</p>
-            }
-          </div>
-        </RelatedPosts>
+        <RelatedPosts relatedPosts={relatedPosts} />
       </Post>
     </>
   )
@@ -81,35 +61,6 @@ const SocialLinks = styled.ul`
 
   img {
     width: 30px;
-  }
-`;
-
-const RelatedPosts = styled.section`
-  margin-top: 1.6em;
-
-  .related-posts-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .related-post {
-    flex: 45%;
-    max-width: 45%;
-    
-    &:first-child {
-      margin-right: .8em;
-
-      @media (min-width: 992px) {
-        margin-right: 2em;
-      }
-    }
-
-    .title {
-      text-transform: capitalize;
-      font-size: 1rem;
-      font-weight: 600;
-      margin-top: .3em;
-    }
   }
 `;
 

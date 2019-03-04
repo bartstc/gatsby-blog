@@ -5,8 +5,7 @@ import SEO from "../components/seo";
 import Post from '../components/Post';
 import { PageTitle } from '../utils/Title';
 
-const TagPosts = ({ data, pageContext }) => {
-  const { tag } = pageContext;
+const TagPosts = ({ data, pageContext: { tag } }) => {
   const posts = data.allContentfulPost.edges;
   const pageTitle = `${posts.length} post${(posts.length === 1) ? '' : 's'} tagged with ${tag}`;
 

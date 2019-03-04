@@ -7,9 +7,8 @@ import Pagination from "../components/Pagination";
 import { Button } from '../utils/Button';
 import { PageTitle } from '../utils/Title';
 
-const postList = (props) => {
-  const posts = props.data.allContentfulPost.edges;
-  const { currentPage, numberOfPages } = props.pageContext;
+const postList = ({ data, pageContext: { currentPage, numberOfPages } }) => {
+  const posts = data.allContentfulPost.edges;
 
   return (
     <>
