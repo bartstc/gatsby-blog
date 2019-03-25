@@ -1,3 +1,5 @@
-Simple minimal blog example with GatsbyJS.
+## Overview
 
-LIVE: https://m-blog-example.netlify.com/
+Simple blog website concept fired on contentful.
+
+[Preview](https://m-blog-example.netlify.com/)
