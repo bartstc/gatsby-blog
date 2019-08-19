@@ -42,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: post.node.slug,
         component: templates.singlePost,
-        context: {
+        context: { // variables
           slug: post.node.slug,
           mainTag,
           mainCategory

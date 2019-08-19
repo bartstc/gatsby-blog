@@ -1,18 +1,18 @@
 // SOURCE: https://divdev.io/animating-gatsby-pt/
 
-import React from "react";
+import React from "react"
 import {
   TransitionGroup,
   Transition as ReactTransition,
-} from "react-transition-group";
+} from "react-transition-group"
 
 //This variable will be responsible for our animation duration
-const timeout = 250;
+const timeout = 400
 
 //This object contains basic styles for animation, but you can extend them to whatever you like. Be creative!
 const getTransitionStyles = {
   entering: {
-    position: 'absolute',
+    position: "absolute",
     opacity: 0,
   },
   entered: {
@@ -21,7 +21,7 @@ const getTransitionStyles = {
   },
   exiting: {
     transition: `all ${timeout}ms ease-in-out`,
-    opacity: 0
+    opacity: 0,
   },
 }
 
@@ -31,7 +31,7 @@ class Transition extends React.PureComponent {
     const { children, location } = this.props
 
     return (
-      //Using TransitionGroup and ReactTransition which are both 
+      //Using TransitionGroup and ReactTransition which are both
       //coming from  'react-transition-group' and are required for transitions to work
       <TransitionGroup>
         <ReactTransition
@@ -43,21 +43,20 @@ class Transition extends React.PureComponent {
             exit: timeout,
           }}
         >
-          {
-            //Application of the styles depending on the status of page(entering, exiting, entered) in the DOM
-            status => (
-              <div
-                style={{
-                  ...getTransitionStyles[status],
-                }}
-              >
-                {children}
-              </div>
-            )}
+          {//Application of the styles depending on the status of page(entering, exiting, entered) in the DOM
+          status => (
+            <div
+              style={{
+                ...getTransitionStyles[status],
+              }}
+            >
+              {children}
+            </div>
+          )}
         </ReactTransition>
       </TransitionGroup>
     )
   }
 }
 
-export default Transition;
+export default Transition
